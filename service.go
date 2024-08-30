@@ -1,4 +1,4 @@
-package kpspublic
+package kpspub
 
 const ApiUrl string = "https://tckimlik.nvi.gov.tr/Service/KPSPublicv2.asmx"
 
