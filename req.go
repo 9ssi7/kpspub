@@ -1,13 +1,14 @@
-package KPSPublic
+package kpspub
 
 import (
+	"context"
 	"io"
 	"net/http"
 	"strconv"
 	"strings"
 )
 
-func (s *service) parseResponse(response *http.Response) (bool, error) {
+func parseResponse(response *http.Response) (bool, error) {
 	defer response.Body.Close()
 	data, err := io.ReadAll(response.Body)
 	if err != nil {
@@ -16,8 +17,8 @@ func (s *service) parseResponse(response *http.Response) (bool, error) {
 	return strings.Contains(string(data), "true"), nil
 }
 
-func (s *service) makeRequest(xml string) (bool, error) {
-	req, err := http.NewRequest("POST", s.url, strings.NewReader(xml))
+func makeRequest(ctx context.Context, xml string) (bool, error) {
+	req, err := http.NewRequestWithContext(ctx, "POST", ApiUrl, strings.NewReader(xml))
 	if err != nil {
 		return false, err
 	}
@@ -29,5 +30,5 @@ func (s *service) makeRequest(xml string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	return s.parseResponse(response)
+	return parseResponse(response)
 }

@@ -1,14 +1,15 @@
-package KPSPublic
+package kpspub
 
 import (
+	"context"
 	"strconv"
 )
 
-func (s *service) VerifyNewId(config VerifyNewIdConfig) (bool, error) {
-	return s.makeRequest(s.getNewIdXML(config))
+func VerifyWithNewID(ctx context.Context, config VerifyConfig) (bool, error) {
+	return makeRequest(ctx, getBodyForNewID(config))
 }
 
-func (s *service) getNewIdXML(config VerifyNewIdConfig) string {
+func getBodyForNewID(config VerifyConfig) string {
 	return `<?xml version="1.0" encoding="utf-8"?>
 	<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 	<soap:Body>

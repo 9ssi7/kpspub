@@ -5,7 +5,7 @@ KPSPublic is a SOAP service provided by the Turkish Tax Administration. This is 
 ## Installation
 
 ```bash
-go get github.com/ssibrahimbas/KPSPublic
+go get github.com/9ssi7/kpspub
 ```
 
 ## Usage
@@ -13,11 +13,10 @@ go get github.com/ssibrahimbas/KPSPublic
 ```go
 package main
 
-import "github.com/ssibrahimbas/KPSPublic"
+import "github.com/9ssi7/kpspub"
 
 func main() {
-	kps := KPSPublic.NewService()
-	res, err := kps.Verify(KPSPublic.VerifyConfig{
+	isVerified, err := kpspub.Verify(context.Background(), kpspub.VerifyConfig{
 		BirthDay:         <YOUR_BIRTH_DAY>, // 1-31
 		BirthMonth:       <YOUR_BIRTH_MONTH>, // 1-12
 		BirthYear:        <YOUR_BIRTH_YEAR>, // 1900-2099
@@ -29,7 +28,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	println(res) // true or false
+	println(isVerified) // true or false
 }
 ```
 
