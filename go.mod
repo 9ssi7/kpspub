@@ -1,3 +1,3 @@
-module github.com/9ssi7/kpspub
+module github.com/salihdev0/kpspub
 
 go 1.23

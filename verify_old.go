@@ -5,6 +5,12 @@ import (
 	"strconv"
 )
 
+// VerifyWithOldID verifies identity information using the legacy identity card
+// serial number format.
+//
+// SerialNumber must contain at least six characters. The first three characters
+// are sent as CuzdanSeri and characters four through six are sent as CuzdanNo.
+// Passing a shorter value will panic.
 func VerifyWithOldID(ctx context.Context, config VerifyConfig) (bool, error) {
 	return makeRequest(ctx, getBodyForOldID(config))
 }

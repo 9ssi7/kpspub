@@ -5,6 +5,12 @@ import (
 	"strconv"
 )
 
+// VerifyWithNewID verifies identity information using the new Turkish ID card
+// serial number format.
+//
+// The SerialNumber field is sent as TCKKSeriNo. Use Verify instead when the
+// caller does not know whether the supplied serial number belongs to a new or
+// legacy card.
 func VerifyWithNewID(ctx context.Context, config VerifyConfig) (bool, error) {
 	return makeRequest(ctx, getBodyForNewID(config))
 }
